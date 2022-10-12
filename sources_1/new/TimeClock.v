@@ -9,12 +9,13 @@ module TimeClock(
     );
 
     wire w_digit_clk;
-    wire [1:0] w_digitPosition;
+    wire [2:0] w_digitPosition;
 
     wire w_time_clk;
     wire [5:0] w_hour, w_min, w_sec;
     wire [6:0] w_msec;
     wire [3:0] w_10_hour, w_1_hour, w_10_min, w_1_min, w_10_sec, w_1_sec, w_10_msec, w_1_msec;
+    wire [3:0] w_fndDP;
     wire [3:0] w_hourmin_value, w_secmsec_value, w_value;
 
     // Digit Part
@@ -30,7 +31,7 @@ module TimeClock(
         .o_digitPosition(w_digitPosition)
     );
 
-    Decoder_2x4 Digit(
+    Decoder_3x4 Digit(
         .i_digitPosition(w_digitPosition),
         .o_Digit(o_FND_Digit)
     );
@@ -69,20 +70,33 @@ module TimeClock(
         .o_1_msec(w_1_msec)
     );
 
-    MUX_4x1 HourMin(
-        .i_in_1(w_10_hour), 
+    Comparator comp(
+        .i_msec(w_msec),
+        .o_fndDP(w_fndDP)
+    );
+
+    MUX_8x1 HorMin(
+        .i_in_1(w_10_hour),
         .i_in_2(w_1_hour), 
         .i_in_3(w_10_min), 
-        .i_in_4(w_1_min),
+        .i_in_4(w_1_min), 
+        .i_dot_1(11), 
+        .i_dot_2(w_fndDP), 
+        .i_dot_3(11), 
+        .i_dot_4(11),
         .i_digitPosition(w_digitPosition),
         .o_value(w_hourmin_value)
     );
 
-    MUX_4x1 SecMsec(
-        .i_in_1(w_10_sec), 
+    MUX_8x1 SecMsec(
+        .i_in_1(w_10_sec),
         .i_in_2(w_1_sec), 
-        .i_in_3(w_10_msec),
-        .i_in_4(w_1_msec),
+        .i_in_3(w_10_msec), 
+        .i_in_4(w_1_msec), 
+        .i_dot_1(11), 
+        .i_dot_2(w_fndDP), 
+        .i_dot_3(11), 
+        .i_dot_4(11),
         .i_digitPosition(w_digitPosition),
         .o_value(w_secmsec_value)
     );

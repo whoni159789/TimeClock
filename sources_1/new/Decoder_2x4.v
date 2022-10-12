@@ -5,7 +5,7 @@ module Decoder_2x4(
     output [3:0] o_Digit
     );
 
-    reg [3:0] r_Digit;
+    reg [1:0] r_Digit;
     assign o_Digit = r_Digit;
 
     always @(*) begin

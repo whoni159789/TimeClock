@@ -21,6 +21,7 @@ module BCDToFND_Decoder(
             4'h7 : r_font = 8'hf8;
             4'h8 : r_font = 8'h80;
             4'h9 : r_font = 8'h98;
+            4'ha : r_font = 8'h7f;  // segement dp
         endcase
     end
 endmodule
