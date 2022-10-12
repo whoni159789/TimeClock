@@ -21,7 +21,7 @@ Vivado 2020.1에서 Verilog를 이용한 시계 기능을 구현하는 코드
 ### [Decoder_2x4]
 ![Ver 1  Decoder_2x4 RTL](https://user-images.githubusercontent.com/113006133/195368294-5ee7fb0f-96c6-4aa4-97ca-4f9e9d661386.JPG)
 
-### ClockDivider_TimeClock
+### [ClockDivider_TimeClock]
 ![Ver 1  ClockDivider_TimeClock RTL](https://user-images.githubusercontent.com/113006133/195368337-44401bd9-ea90-4f59-8742-aa8cc336ae88.JPG)
 
 ### [Counter_TimeClock]
