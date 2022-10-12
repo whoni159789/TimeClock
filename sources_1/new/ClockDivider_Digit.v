@@ -14,7 +14,8 @@ module ClockDivider_Digit(
             r_clk <= 0;
         end
         else begin
-            if(r_counter == 50_000 - 1) begin
+            //if(r_counter == 50_000 - 1) begin
+            if(r_counter == 5 - 1) begin
                 r_counter <= 0;
                 r_clk <= ~ r_clk;
             end

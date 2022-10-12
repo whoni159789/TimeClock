@@ -4,6 +4,7 @@ module TimeClock(
     input i_clk,
     input i_reset,
     input i_modeSW,
+    input i_OnOffSW,
     output [3:0] o_FND_Digit,
     output [7:0] o_FND_Font
     );
@@ -32,6 +33,7 @@ module TimeClock(
     );
 
     Decoder_3x4 Digit(
+        .i_OnOffSW(i_OnOffSW),
         .i_digitPosition(w_digitPosition),
         .o_Digit(o_FND_Digit)
     );

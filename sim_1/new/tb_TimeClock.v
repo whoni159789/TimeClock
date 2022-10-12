@@ -5,6 +5,7 @@ module tb_TimeClock();
     reg i_clk = 1'b0;
     reg i_reset;
     reg i_modeSW;
+    reg i_OnOffSW;
 
     // ourput
     wire [3:0] o_FND_Digit;
@@ -35,6 +36,7 @@ module tb_TimeClock();
     );
 
     Decoder_3x4 Digit(
+        .i_OnOffSW(i_OnOffSW),
         .i_digitPosition(w_digitPosition),
         .o_Digit(o_FND_Digit)
     );
@@ -120,10 +122,10 @@ module tb_TimeClock();
     always #1 i_clk = ~i_clk;
 
     initial begin
-        #00 i_reset = 1'b1; i_modeSW = 1;
+        #00 i_reset = 1'b1; i_modeSW = 1; i_OnOffSW = 1'b0;
 
-        #100 i_reset = 1'b0; i_modeSW = 1;
-        #1100 i_reset = 1'b0; i_modeSW = 1;
+        #100 i_reset = 1'b0; i_modeSW = 1; i_OnOffSW = 1'b1;
+        #200 i_reset = 1'b0; i_modeSW = 1; i_OnOffSW = 1'b0;
 
         #5100 $finish;
     end
